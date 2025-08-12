@@ -38,7 +38,7 @@
 
 ### 1. 克隆项目
 ```bash
-git clone https://github.com/yourusername/KeySprite.git
+git clone https://github.com/tagsysx/KeySprite.git
 cd KeySprite
 ```
 
@@ -129,7 +129,7 @@ KeySprite/
 
 - 项目维护者: [Your Name]
 - 邮箱: [your.email@example.com]
-- 项目链接: [https://github.com/yourusername/KeySprite](https://github.com/yourusername/KeySprite)
+- 项目链接: [https://github.com/tagsysx/KeySprite](https://github.com/tagsysx/KeySprite)
 
 ## 🙏 致谢
 
