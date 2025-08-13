@@ -1,0 +1,501 @@
+//
+//  KeyboardViewController.swift
+//  KeySpirteKeyboard
+//
+//  Created by Lei Yang on 12/8/2025.
+//
+
+import UIKit
+
+class KeyboardViewController: UIInputViewController {
+
+    // 移除@IBOutlet，改为普通的可选属性
+    private var nextKeyboardButton: UIButton!
+    
+    // MARK: - Properties
+    private var keyboardView: KeyboardView!
+    private var aiPredictor: AIPredictor!
+    
+    override func updateViewConstraints() {
+        super.updateViewConstraints()
+        
+        // Add custom view sizing constraints here
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        print("🚀 KeyboardViewController viewDidLoad called")
+        print("📱 View frame: \(view.frame)")
+        print("📱 View bounds: \(view.bounds)")
+        print("📱 View constraints: \(view.constraints.count)")
+        
+        // 初始化AI预测器
+        aiPredictor = AIPredictor()
+        
+        // 初始化共享数据管理器
+        setupSharedData()
+        
+        // 设置键盘视图 - 移除延迟，直接设置
+        setupKeyboardView()
+        setupNextKeyboardButton()
+        
+        print("🎯 ViewDidLoad setup complete")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("📱 ViewWillAppear called")
+        
+        // 验证视图约束
+        validateViewConstraints()
+        
+        // 在视图即将显示时处理nextKeyboardButton
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+            guard let self = self, self.nextKeyboardButton != nil else { return }
+            print("🔧 Setting nextKeyboardButton visibility in viewWillAppear")
+            self.nextKeyboardButton.isHidden = !self.needsInputModeSwitchKey
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("📱 ViewDidAppear called")
+        
+        // 强制更新布局，确保视图尺寸正确
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.forceLayoutUpdate()
+        }
+        
+        // 如果视图仍然没有正确的尺寸，尝试延迟处理
+        if view.frame.width == 0 || view.frame.height == 0 {
+            print("⚠️ View still has zero frame in viewDidAppear, scheduling delayed layout")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                self?.handleDelayedLayout()
+            }
+        }
+        
+        // 添加额外的延迟检查，确保布局最终正确
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            self?.finalLayoutCheck()
+        }
+    }
+    
+    private func finalLayoutCheck() {
+        print("🔍 Final layout check...")
+        
+        if view.frame.width > 0 && view.frame.height > 0 {
+            print("✅ Final check: View has proper dimensions")
+            if let keyboardView = keyboardView, keyboardView.keyViews.isEmpty {
+                print("🔧 Final check: Creating keyboard layout")
+                keyboardView.createKeyboardLayout()
+            }
+        } else {
+            print("⚠️ Final check: View still has invalid dimensions")
+        }
+    }
+    
+    private func forceLayoutUpdate() {
+        print("🔄 Forcing layout update...")
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        
+        // 如果键盘视图还没有正确尺寸，强制更新
+        if let keyboardView = keyboardView, keyboardView.frame.width == 0 || keyboardView.frame.height == 0 {
+            print("🔄 Forcing keyboard view layout update...")
+            keyboardView.forceUpdate()
+        }
+    }
+    
+    private func handleDelayedLayout() {
+        print("🔄 Handling delayed layout...")
+        
+        // 再次检查视图尺寸
+        if view.frame.width > 0 && view.frame.height > 0 {
+            print("✅ View now has proper dimensions: \(view.frame)")
+            forceLayoutUpdate()
+        } else {
+            print("⚠️ View still has invalid dimensions: \(view.frame)")
+            // 尝试强制更新约束
+            view.setNeedsUpdateConstraints()
+            view.updateConstraintsIfNeeded()
+            view.setNeedsLayout()
+            view.layoutIfNeeded()
+            
+            // 如果仍然没有正确的尺寸，尝试重新创建键盘视图
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+                self?.recreateKeyboardViewIfNeeded()
+            }
+        }
+    }
+    
+    private func recreateKeyboardViewIfNeeded() {
+        print("🔄 Attempting to recreate keyboard view...")
+        
+        // 检查当前状态
+        if view.frame.width == 0 || view.frame.height == 0 {
+            print("⚠️ View still has invalid dimensions, recreating keyboard view")
+            
+            // 移除现有的键盘视图
+            keyboardView?.removeFromSuperview()
+            keyboardView = nil
+            
+            // 重新创建
+            setupKeyboardView()
+            setupNextKeyboardButton()
+        }
+    }
+    
+    private func validateViewConstraints() {
+        print("🔍 Validating view constraints...")
+        print("📱 Main view constraints: \(view.constraints.count)")
+        print("📱 Main view frame: \(view.frame)")
+        print("📱 Main view bounds: \(view.bounds)")
+        
+        if let keyboardView = keyboardView {
+            print("🎹 KeyboardView constraints: \(keyboardView.constraints.count)")
+            print("🎹 KeyboardView frame: \(keyboardView.frame)")
+            print("🎹 KeyboardView bounds: \(keyboardView.bounds)")
+        }
+        
+        // 检查是否有足够的约束
+        if view.constraints.count < 4 {
+            print("⚠️ Warning: Main view has fewer than 4 constraints")
+        }
+    }
+    
+    // MARK: - UI Setup
+    
+    private func setupKeyboardView() {
+        print("🔧 Setting up keyboard view...")
+        
+        // 创建键盘视图
+        keyboardView = KeyboardView()
+        keyboardView.delegate = self
+        keyboardView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // 设置背景色以便调试
+        keyboardView.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.3)
+        
+        // 添加到视图层次
+        view.addSubview(keyboardView)
+        
+        // 设置约束 - 键盘视图应该填充整个可用空间
+        NSLayoutConstraint.activate([
+            keyboardView.topAnchor.constraint(equalTo: view.topAnchor),
+            keyboardView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            keyboardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            keyboardView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        // 强制立即更新约束
+        view.setNeedsUpdateConstraints()
+        view.updateConstraintsIfNeeded()
+        
+        print("✅ Keyboard view setup complete. Frame: \(keyboardView.frame)")
+        print("✅ View hierarchy: \(view.subviews)")
+        print("✅ View constraints after setup: \(view.constraints.count)")
+        print("✅ KeyboardView constraints: \(keyboardView.constraints.count)")
+    }
+    
+    private func setupNextKeyboardButton() {
+        // 创建切换键盘按钮
+        self.nextKeyboardButton = UIButton(type: .system)
+        self.nextKeyboardButton.setTitle(NSLocalizedString("🌐", comment: "Next Keyboard button"), for: [])
+        self.nextKeyboardButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        self.nextKeyboardButton.backgroundColor = UIColor.systemGray4
+        self.nextKeyboardButton.layer.cornerRadius = 8
+        self.nextKeyboardButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.nextKeyboardButton.addTarget(self, action: #selector(handleInputModeList(from:with:)), for: .touchUpInside)
+        
+        // 添加到键盘视图的顶部
+        view.addSubview(self.nextKeyboardButton)
+        
+        // 设置约束 - 放在右上角
+        NSLayoutConstraint.activate([
+            self.nextKeyboardButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8),
+            self.nextKeyboardButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            self.nextKeyboardButton.widthAnchor.constraint(equalToConstant: 44),
+            self.nextKeyboardButton.heightAnchor.constraint(equalToConstant: 44)
+        ])
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        // 在viewWillLayoutSubviews中不调用needsInputModeSwitchKey
+        // 等待viewDidLayoutSubviews中处理
+        print("📱 ViewWillLayoutSubviews called")
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        // 在布局完成后再次检查frame
+        print("📱 ViewDidLayoutSubviews - Frame: \(view.frame)")
+        print("🎹 KeyboardView frame: \(keyboardView?.frame ?? .zero)")
+        
+        // 如果视图有有效尺寸且键盘视图还没有布局，则创建键盘布局
+        if view.frame.width > 0 && view.frame.height > 0 && keyboardView != nil {
+            // 检查键盘视图是否已经有内容，避免重复创建
+            if keyboardView.keyViews.isEmpty {
+                print("🔧 Creating keyboard layout in viewDidLayoutSubviews")
+                keyboardView.createKeyboardLayout()
+            }
+        }
+        
+        // 延迟调用needsInputModeSwitchKey，避免过早调用
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            guard let self = self, self.nextKeyboardButton != nil else { return }
+            print("🔧 Setting nextKeyboardButton visibility after delay")
+            self.nextKeyboardButton.isHidden = !self.needsInputModeSwitchKey
+        }
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        // 处理屏幕旋转或尺寸变化
+        coordinator.animate { [weak self] _ in
+            // 如果尺寸变化很大，重置键盘布局
+            if let currentFrame = self?.view.frame,
+               abs(currentFrame.width - size.width) > 50 || abs(currentFrame.height - size.height) > 50 {
+                print("🔄 Significant size change detected, resetting keyboard layout")
+                self?.keyboardView?.resetLayout()
+            }
+            
+            self?.view.setNeedsLayout()
+            self?.view.layoutIfNeeded()
+        }
+        
+        // 在转换完成后再次检查
+        coordinator.animate(alongsideTransition: nil) { [weak self] _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+                self?.forceLayoutUpdate()
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("📱 ViewWillDisappear called")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("📱 ViewDidDisappear called")
+    }
+    
+    override func textWillChange(_ textInput: UITextInput?) {
+        // The app is about to change the document's contents. Perform any preparation here.
+    }
+    
+    override func textDidChange(_ textInput: UITextInput?) {
+        // The app has just changed the document's contents, the document context has been updated.
+        
+        // 确保nextKeyboardButton已经初始化
+        guard let nextKeyboardButton = self.nextKeyboardButton else { return }
+        
+        var textColor: UIColor
+        let proxy = self.textDocumentProxy
+        if proxy.keyboardAppearance == UIKeyboardAppearance.dark {
+            textColor = UIColor.white
+        } else {
+            textColor = UIColor.black
+        }
+        nextKeyboardButton.setTitleColor(textColor, for: [])
+    }
+    
+    // MARK: - Shared Data Management
+    
+    private func setupSharedData() {
+        // 改进App Group检测和使用
+        print("🔧 Setting up shared data...")
+        
+        if SharedDataManager.shared.isAppGroupAvailable {
+            print("✅ App Group is available for data sharing")
+            
+            // 设置默认值
+            setupDefaultPreferences()
+        } else {
+            print("⚠️ App Group is not available, using local storage")
+            // 即使App Group不可用，也设置本地默认值
+            setupDefaultPreferences()
+        }
+    }
+    
+    private func setupDefaultPreferences() {
+        print("🔧 Setting up default preferences...")
+        
+        // 如果某些设置还没有值，设置默认值
+        if SharedDataManager.shared.getUserPreference(forKey: "keyboard_theme") == nil {
+            SharedDataManager.shared.saveKeyboardTheme("default")
+            print("✅ Set default keyboard theme")
+        }
+        
+        if SharedDataManager.shared.getUserPreference(forKey: "keyboard_layout") == nil {
+            SharedDataManager.shared.saveKeyboardLayout("qwerty")
+            print("✅ Set default keyboard layout")
+        }
+        
+        if SharedDataManager.shared.getUserPreference(forKey: "ai_prediction_enabled") == nil {
+            SharedDataManager.shared.saveAIPredictionEnabled(true)
+            print("✅ Set default AI prediction enabled")
+        }
+        
+        print("✅ Default preferences setup complete")
+    }
+    
+    private func updateLastActiveTime() {
+        // 安全地更新最后活跃时间
+        do {
+            SharedDataManager.shared.saveLastActiveTime()
+            print("✅ Updated last active time")
+        } catch {
+            print("⚠️ Failed to update last active time: \(error)")
+        }
+    }
+}
+
+// MARK: - KeyboardViewDelegate
+extension KeyboardViewController: KeyboardViewDelegate {
+    func didTapKey(_ key: KeyboardKey) {
+        print("🔑 Key tapped: \(key.character)")
+        
+        // 处理T9输入（如果是中文布局）
+        if let t9Result = keyboardView.handleT9Input(key.character) {
+            handleT9Result(t9Result)
+            return
+        }
+        
+        // 处理其他布局的按键
+        switch key.type {
+        case .character:
+            textDocumentProxy.insertText(key.character)
+            
+        case .backspace:
+            textDocumentProxy.deleteBackward()
+            
+        case .space:
+            textDocumentProxy.insertText(" ")
+            
+        case .return:
+            textDocumentProxy.insertText("\n")
+            
+        case .shift:
+            // 处理Shift键逻辑
+            print("⇧ Shift key tapped")
+            
+        case .layout:
+            // 处理布局切换键
+            handleLayoutKeyTap(key.character)
+            
+        case .emoji:
+            // 处理表情键
+            print("😀 Emoji key tapped")
+        }
+    }
+    
+    func didLongPressKey(_ key: KeyboardKey) {
+        print("🔑 Key long pressed: \(key.character)")
+        
+        // 处理长按逻辑
+        switch key.type {
+        case .backspace:
+            // 长按删除键可以连续删除
+            textDocumentProxy.deleteBackward()
+            
+        case .space:
+            // 长按空格键可以连续插入空格
+            textDocumentProxy.insertText(" ")
+            
+        default:
+            break
+        }
+    }
+    
+    func didTapLayoutButton(_ layout: KeyboardLayout) {
+        print("🎯 Layout button tapped: \(layout)")
+        
+        // 更新键盘布局
+        keyboardView.updateLayout(layout)
+        
+        // 保存用户偏好
+        SharedDataManager.shared.saveKeyboardLayout(layout.rawValue)
+    }
+    
+    // MARK: - T9 Input Handling
+    
+    private func handleT9Result(_ result: T9InputResult) {
+        switch result {
+        case .candidate(let word):
+            // 显示候选词
+            print("📝 T9 candidate: \(word)")
+            // 这里可以更新候选词显示
+            
+        case .input(let text):
+            // 插入文本
+            textDocumentProxy.insertText(text)
+            print("📝 T9 input: \(text)")
+        case .confirmed(let word):
+            // 确认输入
+            textDocumentProxy.insertText(word)
+            print("📝 T9 confirmed: \(word)")
+        case .space:
+            // 插入空格
+            textDocumentProxy.insertText(" ")
+            print("📝 T9 space")
+        case .cleared:
+            print("📝 T9 cleared")
+        case .none:
+            print("📝 T9 none")
+        }
+    }
+    
+    private func handleLayoutKeyTap(_ key: String) {
+        print("🎯 Layout key tapped: \(key)")
+        
+        // 根据按键切换布局
+        switch key {
+        case "123":
+            keyboardView.updateLayout(.number)
+        case "ABC":
+            keyboardView.updateLayout(.qwerty)
+        case "🌐":
+            // 切换键盘
+            advanceToNextInputMode()
+        case "😀":
+            keyboardView.updateLayout(.emoji)
+        case "Symbols":
+            keyboardView.updateLayout(.symbol)
+        default:
+            break
+        }
+    }
+    
+    // MARK: - Background Handling
+    
+    // MARK: - AI Prediction
+    
+    private func handleAIPrediction() {
+        // 这里可以添加AI预测逻辑
+        print("🤖 AI prediction handling...")
+    }
+    
+    // MARK: - Memory Management
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print("⚠️ Memory warning received")
+        
+        // 清理不必要的资源
+        if let keyboardView = keyboardView {
+            keyboardView.resetLayout()
+        }
+    }
+    
+    deinit {
+        print("📱 KeyboardViewController deallocated")
+    }
+}

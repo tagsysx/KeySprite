@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'KeySpirte' in project 'KeySpirte'
+➜ Explicit dependency on target 'KeySpirteKeyboard' in project 'KeySpirte'
+Target 'KeySpirteKeyboard' in project 'KeySpirte' (no dependencies)

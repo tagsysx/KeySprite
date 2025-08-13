@@ -1,0 +1,98 @@
+{
+  "" : {
+    "diagnostics" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeySpirteKeyboard-master.dia",
+    "emit-module-dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeySpirteKeyboard-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeySpirteKeyboard-master-emit-module.dia",
+    "swift-dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeySpirteKeyboard-master.swiftdeps"
+  },
+  "/Users/ray/Projects/KeySprite/KeySpirte/KeySpirteKeyboard/AIPredictor.swift" : {
+    "const-values" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/AIPredictor.swiftconstvalues",
+    "dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/AIPredictor.d",
+    "diagnostics" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/AIPredictor.dia",
+    "index-unit-output-path" : "/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/AIPredictor.o",
+    "llvm-bc" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/AIPredictor.bc",
+    "object" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/AIPredictor.o",
+    "swift-dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/AIPredictor.swiftdeps",
+    "swiftmodule" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/AIPredictor~partial.swiftmodule"
+  },
+  "/Users/ray/Projects/KeySprite/KeySpirte/KeySpirteKeyboard/InputEngine.swift" : {
+    "const-values" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/InputEngine.swiftconstvalues",
+    "dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/InputEngine.d",
+    "diagnostics" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/InputEngine.dia",
+    "index-unit-output-path" : "/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/InputEngine.o",
+    "llvm-bc" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/InputEngine.bc",
+    "object" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/InputEngine.o",
+    "swift-dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/InputEngine.swiftdeps",
+    "swiftmodule" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/InputEngine~partial.swiftmodule"
+  },
+  "/Users/ray/Projects/KeySprite/KeySpirte/KeySpirteKeyboard/KeyboardKeyView.swift" : {
+    "const-values" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardKeyView.swiftconstvalues",
+    "dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardKeyView.d",
+    "diagnostics" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardKeyView.dia",
+    "index-unit-output-path" : "/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardKeyView.o",
+    "llvm-bc" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardKeyView.bc",
+    "object" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardKeyView.o",
+    "swift-dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardKeyView.swiftdeps",
+    "swiftmodule" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardKeyView~partial.swiftmodule"
+  },
+  "/Users/ray/Projects/KeySprite/KeySpirte/KeySpirteKeyboard/KeyboardLayoutManager.swift" : {
+    "const-values" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutManager.swiftconstvalues",
+    "dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutManager.d",
+    "diagnostics" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutManager.dia",
+    "index-unit-output-path" : "/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutManager.o",
+    "llvm-bc" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutManager.bc",
+    "object" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutManager.o",
+    "swift-dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutManager.swiftdeps",
+    "swiftmodule" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutManager~partial.swiftmodule"
+  },
+  "/Users/ray/Projects/KeySprite/KeySpirte/KeySpirteKeyboard/KeyboardLayoutSpecs.swift" : {
+    "const-values" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutSpecs.swiftconstvalues",
+    "dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutSpecs.d",
+    "diagnostics" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutSpecs.dia",
+    "index-unit-output-path" : "/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutSpecs.o",
+    "llvm-bc" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutSpecs.bc",
+    "object" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutSpecs.o",
+    "swift-dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutSpecs.swiftdeps",
+    "swiftmodule" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardLayoutSpecs~partial.swiftmodule"
+  },
+  "/Users/ray/Projects/KeySprite/KeySpirte/KeySpirteKeyboard/KeyboardView.swift" : {
+    "const-values" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardView.swiftconstvalues",
+    "dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardView.d",
+    "diagnostics" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardView.dia",
+    "index-unit-output-path" : "/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardView.o",
+    "llvm-bc" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardView.bc",
+    "object" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardView.o",
+    "swift-dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardView.swiftdeps",
+    "swiftmodule" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardView~partial.swiftmodule"
+  },
+  "/Users/ray/Projects/KeySprite/KeySpirte/KeySpirteKeyboard/KeyboardViewController.swift" : {
+    "const-values" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardViewController.swiftconstvalues",
+    "dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardViewController.d",
+    "diagnostics" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardViewController.dia",
+    "index-unit-output-path" : "/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardViewController.o",
+    "llvm-bc" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardViewController.bc",
+    "object" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardViewController.o",
+    "swift-dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardViewController.swiftdeps",
+    "swiftmodule" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/KeyboardViewController~partial.swiftmodule"
+  },
+  "/Users/ray/Projects/KeySprite/KeySpirte/KeySpirteKeyboard/Models.swift" : {
+    "const-values" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/Models.swiftconstvalues",
+    "dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/Models.d",
+    "diagnostics" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/Models.dia",
+    "index-unit-output-path" : "/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/Models.o",
+    "llvm-bc" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/Models.bc",
+    "object" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/Models.o",
+    "swift-dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/Models.swiftdeps",
+    "swiftmodule" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/Models~partial.swiftmodule"
+  },
+  "/Users/ray/Projects/KeySprite/KeySpirte/KeySpirteKeyboard/SharedDataManager.swift" : {
+    "const-values" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/SharedDataManager.swiftconstvalues",
+    "dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/SharedDataManager.d",
+    "diagnostics" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/SharedDataManager.dia",
+    "index-unit-output-path" : "/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/SharedDataManager.o",
+    "llvm-bc" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/SharedDataManager.bc",
+    "object" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/SharedDataManager.o",
+    "swift-dependencies" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/SharedDataManager.swiftdeps",
+    "swiftmodule" : "/Users/ray/Projects/KeySprite/KeySpirte/build/KeySpirte.build/Debug-iphoneos/KeySpirteKeyboard.build/Objects-normal/arm64/SharedDataManager~partial.swiftmodule"
+  }
+}
