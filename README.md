@@ -1,5 +1,7 @@
 # KeySprite - AI-Powered Smart Input Method
 
+> **Note**: This is a research project currently under development. The project is in active development and may contain experimental features.
+
 An intelligent iOS input method application based on AI models that automatically recommends the most suitable keyboard layout based on user input content.
 
 ## 🚀 Features
@@ -79,7 +81,7 @@ Product > Test > Test Plan
 KeySprite/
 ├── KeySprite.xcodeproj/          # Main project file
 ├── KeySprite/                    # Main application
-├── KeySpriteKeyboard/            # Keyboard extension
+├── KeySpirteKeyboard/            # Keyboard extension
 ├── Shared/                       # Shared code
 ├── Resources/                    # Resource files
 ├── Tests/                        # Test files
